@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>유하네 가족 앞으로 긴급 설문이 도착했습니다 📋</title>
+<meta name="description" content="빼빼로데이 긴급 설문 🍫 유하네 가족만 열어보세요">
+<meta property="og:type" content="website">
+<meta property="og:title" content="유하네 가족 앞으로 긴급 설문이 도착했습니다 📋">
+<meta property="og:description" content="빼빼로데이 긴급 설문 🍫 유하네 가족만 열어보세요">
+<!-- 미리보기 이미지를 쓰려면 아래 줄의 주소를 업로드한 이미지의 전체 주소로 바꾸고 주석을 풀어주세요 -->
+<!-- <meta property="og:image" content="https://여기에-사이트-주소/og.png"> -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🍫%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#ffe4ec;--card:#fffafb;--ink:#5a3825;--sub:#a8707a;--pink:#ff6b8b;--pink-ink:#fff;--opt:#fff0f4;--opt-b:#ffc2d1;--brown:#7b4a32;--shadow:rgba(150,60,90,.18);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b1a20;--card:#3b2530;--ink:#ffe9ee;--sub:#e3a9b8;--pink:#ff7d9a;--opt:#4a2e39;--opt-b:#7a4658;--brown:#e0b79c;--shadow:rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--bg:#2b1a20;--card:#3b2530;--ink:#ffe9ee;--sub:#e3a9b8;--pink:#ff7d9a;--opt:#4a2e39;--opt-b:#7a4658;--brown:#e0b79c;--shadow:rgba(0,0,0,.45)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:manipulation}
+.card{position:relative;background:var(--card);border-radius:32px;padding:26px 20px 28px;width:min(92vw,440px);max-height:96%;overflow-y:auto;text-align:center;box-shadow:0 12px 34px var(--shadow);border:3px dashed var(--opt-b)}
+.badge{font-size:12px;font-weight:800;color:var(--sub);margin:20px 0 8px;letter-spacing:.5px}
+.prog{font-size:20px;letter-spacing:4px;margin-bottom:6px;min-height:28px}
+.emoji{font-size:56px;line-height:1;display:inline-block;animation:bounce .9s ease-out}
+@keyframes bounce{0%{transform:translateY(-30px) scale(.6);opacity:0}50%{transform:translateY(0) scale(1.2);opacity:1}70%{transform:translateY(-10px)}100%{transform:translateY(0) scale(1)}}
+h1{font-size:21px;margin:12px 0 4px;line-height:1.45;color:var(--brown)}
+.hint{margin:0 0 18px;color:var(--sub);font-size:13px;min-height:18px}
+.opts{display:flex;flex-direction:column;gap:10px}
+button{font:inherit;cursor:pointer;border:0}
+.opt{background:var(--opt);color:var(--ink);border:2px solid var(--opt-b);border-radius:18px;padding:13px 14px;font-size:16px;font-weight:600;transition:transform .12s,background .12s}
+.opt:active{transform:scale(.96);background:var(--opt-b)}
+.main{background:var(--pink);color:var(--pink-ink);border-radius:999px;padding:14px 28px;font-size:17px;font-weight:800;box-shadow:0 4px 12px var(--shadow);transition:transform .15s}
+.main:active{transform:scale(.95)}
+.row{display:flex;gap:14px;justify-content:center;align-items:center;min-height:70px}
+#no{background:var(--opt-b);color:var(--brown);border-radius:999px;padding:14px 26px;font-size:17px;font-weight:700;transition:left .25s,top .25s}
+#no.run{position:fixed;z-index:5}
+input[type=text]{width:100%;margin-top:10px;padding:12px 14px;font:inherit;font-size:16px;border-radius:14px;border:2px solid var(--opt-b);background:var(--opt);color:var(--ink)}
+.sum{text-align:left;background:var(--opt);border-radius:16px;padding:12px 14px;margin:14px 0;font-size:14px;line-height:1.7;white-space:pre-line}
+.back{position:absolute;top:10px;left:12px;background:none;color:var(--sub);font-size:14px;font-weight:700;padding:6px 8px;border-radius:10px}
+.hide{display:none!important}
+.fall{position:fixed;top:-40px;font-size:28px;pointer-events:none;animation:fall linear forwards;z-index:9}
+@keyframes fall{to{transform:translateY(112vh) rotate(360deg)}}
+.toast{font-size:13px;color:var(--sub);min-height:18px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="card">
+  <button class="back hide" id="back">← 이전</button>
+  <div class="badge">유하네 가족 앞으로 긴급 설문이 도착했습니다 📋</div>
+  <div class="prog" id="prog"></div>
+  <div class="emoji" id="emoji"></div>
+  <h1 id="q"></h1>
+  <p class="hint" id="hint"></p>
+  <div id="body"></div>
+</div>
+<script>
+var A = {};
+var step = 0;
+var msgs = ["어? 손이 미끄러졌네요 😳","가족끼리 이러기예요? 🥺","유하가 상처받아요 😢","아니오는 선택할 수 없어요 🙅","자꾸 그러면 유하가 서운해요 💔","그냥 예 누르면 편해요 💝","아니오는 유하가 퇴사시켰습니다 👋","포기하고 예 누르죠? 😏"];
+var Q0 = ["👩 엄마 (박명주)","👨 아빠 (이일우)","🧑 동생 (이유진)","🐾 쁨이"];
+var Q2 = ["💝 유하표 수제 빼빼로 (정성 가득)","🏪 유하가 편의점에서 사 온 빼빼로","🎀 고급 포장 된 빼빼로 (리본 달린 그거)","🙄 빼빼로 필요 없고 그냥 선물이나 줘"];
+var Q3 = ["🍫 초코","🌰 아몬드","🤎 누드","🍓 딸기","🍪 쿠키앤크림","💬 기타"];
+var $ = function(id){return document.getElementById(id)};
+function mk(tag, cls, txt){ var el = document.createElement(tag); if(cls) el.className = cls; if(txt) el.textContent = txt; return el; }
+
+function head(e, q, h){
+  $("emoji").textContent = e;
+  $("emoji").style.animation = "none"; void $("emoji").offsetWidth; $("emoji").style.animation = "";
+  $("q").textContent = q; $("hint").textContent = h || "";
+  $("body").textContent = "";
+  $("back").classList.toggle("hide", step === 0);
+  var s = "";
+  for(var i = 0; i < 4; i++){ s += (i <= step) ? "🍫" : "⬜"; }
+  $("prog").textContent = s;
+}
+function choose(list, key, next, otherLabel, ph){
+  var box = mk("div","opts");
+  list.forEach(function(t){
+    var b = mk("button","opt",t);
+    b.onclick = function(){
+      if(t === otherLabel){ other(box, key, next, ph); }
+      else { A[key] = t; step++; next(); }
+    };
+    box.append(b);
+  });
+  $("body").append(box);
+}
+function other(box, key, next, ph){
+  box.classList.add("hide");
+  var wrap = mk("div");
+  var inp = mk("input"); inp.type = "text"; inp.placeholder = ph; inp.maxLength = 40;
+  var ok = mk("button","main","확인 ✨"); ok.style.marginTop = "14px";
+  ok.onclick = function(){
+    var v = inp.value.trim();
+    if(!v){ inp.focus(); return; }
+    A[key] = "💬 " + v; step++; next();
+  };
+  wrap.append(inp, ok);
+  $("body").append(wrap);
+  inp.focus();
+}
+
+function showQ0(){
+  head("🪪", "본인 확인 부탁드립니다", "접수증에 들어갈 응답자 확인이에요");
+  choose(Q0, 0, showQ2, null, "");
+}
+function showQ1(){
+  head("🎁", "빼빼로데이 선물 받고 싶으신가요?", "유하네 가족 전용 설문입니다. 솔직하게 답해주세요 🥺");
+  var row = mk("div","row");
+  var yes = mk("button","main","예 💝");
+  var no = mk("button","","아니오"); no.id = "no";
+  var n = 0;
+  function dodge(e){
+    if(e) e.preventDefault();
+    n++;
+    no.classList.add("run");
+    var maxX = Math.max(0, innerWidth - no.offsetWidth - 16);
+    var maxY = Math.max(0, innerHeight - no.offsetHeight - 16);
+    no.style.left = (8 + Math.random() * maxX) + "px";
+    no.style.top = (8 + Math.random() * maxY) + "px";
+    $("hint").textContent = msgs[(n - 1) % msgs.length];
+    yes.style.transform = "scale(" + Math.min(1 + n * 0.08, 1.7) + ")";
+    yes.style.margin = (n * 2) + "px";
+  }
+  ["pointerenter","pointerdown","touchstart","mousedown","click","focus"].forEach(function(t){ no.addEventListener(t, dodge, {passive:false}); });
+  yes.onclick = function(){ A[1] = "예 💝"; step = 1; showQ0(); };
+  row.append(yes, no);
+  $("body").append(row);
+}
+function showQ2(){
+  head("🍫", "어떤 빼빼로를 받고 싶으신가요?", "하나만 골라주세요");
+  choose(Q2, 2, showQ3, null, "");
+}
+function showQ3(){
+  head("🍓", "가장 좋아하는 빼빼로 맛은?", "빼빼로 안 받는다 해도 이 맛은 인정!");
+  choose(Q3, 3, showDone, "💬 기타", "어떤 맛이에요? 🍫");
+}
+function text(){
+  return "🍫 [유하네 가족 빼빼로데이 설문 답변] 🍫\n\n응답자: " + A[0] + "\n1. 선물 받고 싶으신가요? → " + A[1] + "\n2. 어떤 빼빼로? → " + A[2] + "\n3. 좋아하는 맛 → " + A[3] + "\n\n유하야 잘 부탁해 🎁";
+}
+function showDone(){
+  head("🚚", "배송 접수 완료", "오늘 중 도착 예정입니다 🎁");
+  var s = mk("div","sum");
+  s.textContent = "📋 배송 접수증\n수신: 유하네 가족 · 담당: 유하\n─────────\n" + text().split("\n\n")[1];
+  var b = mk("button","main","💌 유하에게 답변 보내기");
+  var t = mk("div","toast");
+  b.onclick = function(){
+    if(navigator.share){
+      navigator.share({text: text()}).catch(function(){});
+    } else {
+      try{
+        navigator.clipboard.writeText(text()).then(function(){ t.textContent = "복사됐어요! 카톡에 붙여넣기 해주세요 💌"; }, function(){ t.textContent = "복사에 실패했어요. 화면을 캡처해서 보내주세요 📸"; });
+      }catch(e){ t.textContent = "복사에 실패했어요. 화면을 캡처해서 보내주세요 📸"; }
+    }
+  };
+  $("body").append(s, b, t);
+  confetti();
+}
+function confetti(){
+  var set = ["🍫","💝","🎁","✨","🍓","💖","🍪"];
+  for(var i = 0; i < 46; i++){
+    var el = mk("div","fall",set[i % set.length]);
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.animationDuration = (2 + Math.random() * 2.5) + "s";
+    el.style.animationDelay = Math.random() + "s";
+    document.body.append(el);
+    setTimeout(function(x){ return function(){ x.remove(); }; }(el), 6000);
+  }
+}
+$("back").onclick = function(){
+  step = Math.max(0, step - 1);
+  [showQ1, showQ0, showQ2, showQ3][Math.min(step, 3)]();
+};
+showQ1();
+</script>
+</body>
+</html>
